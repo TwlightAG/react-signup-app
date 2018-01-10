@@ -1,8 +1,6 @@
 import React from 'react';
 import validator from 'validator';
-import PropTypes from 'prop-types';
-import {Redirect} from "react-router";
-import UserProfile from "../actions/userprofile";
+import Loading from '../loader/loader';
 
 
 class SignupForm extends React.Component {
@@ -12,7 +10,6 @@ class SignupForm extends React.Component {
             email:"",
             password:""
         },
-        loading:false,
         redirect:false,
         errors:{}
     };
@@ -22,13 +19,44 @@ class SignupForm extends React.Component {
             data:{...this.state.data, [e.target.name] : e.target.value}
         });
 
+    // componentDidMount(){
+    //     this.setState({isLoading:true});
+    //     fetch('/api/auth/E05', {
+    //         headers : {
+    //             'Content-Type': 'application/json',
+    //             'Accept': 'application/json'
+    //         }
+    //
+    //     })
+    //         .then((response) => response.json())
+    //         .then((data)=>this.setState({data:data,isLoading:false}));
+    // }
+
     onSubmit = (e) => {
         e.preventDefault();
+        this.setState({isLoading:true});
         const errors = this.validate(this.state.data);
         this.setState({errors});
         if(Object.keys(errors).length === 0){
-            UserProfile.setName("Dinesh");
-            this.setState({redirect: true});
+            this.setState({errors});
+            const headers = new Headers();
+            headers.append("Content-Type",'application/json');
+
+            const option = {
+                method : 'POST',
+                headers,
+                body: JSON.stringify(this.state.data)
+            };
+
+            const request = new Request('/api/auth',option);
+            const response = fetch(request);
+            console.log(response.statusText);
+
+            if (response.statusText === 'OK'){
+                this.setState({isLoading:false});
+                console.log('submitted successfully');
+            }
+
         }
 
     };
@@ -43,23 +71,18 @@ class SignupForm extends React.Component {
         else if(!validator.isEmail(data.email)) {
             errors.email = "Invalid Email";
         }
-        else if (data.email === "dineshbalaji@gmail.com" && data.password === "mudita"){
-
-            errors.email = "";
-            errors.password = "";
-
-        }
         return errors;
     };
 
     render(){
-        const { data,errors } = this.state;
-
-        if (this.state.redirect || UserProfile.getName() !== "") {
-            return <Redirect push to="/dashboard" />;
+        const { data,errors,isLoading } = this.state;
+        if(isLoading){
+            return(
+                <Loading />
+            );
         }
         return(
-            <form onSubmit={this.onSubmit} >
+            <form onSubmit={this.onSubmit}>
 
                 <div className="form-group">
                     <label >Email address</label>
@@ -74,7 +97,7 @@ class SignupForm extends React.Component {
                     <label >Password</label>
                     <input type="password" className="form-control"  placeholder="Password" name="password"
                             value ={data.password}
-                           onChange={ this.onChange}
+                           onChange={this.onChange}
                            autoFocus />
                     {errors.password && <small className="help-block text-danger">{errors.password}</small>}
 
@@ -86,9 +109,5 @@ class SignupForm extends React.Component {
         );
     }
 }
-
-SignupForm.propTypes = {
-    submit: PropTypes.func.isRequired
-};
 
 export default SignupForm;
