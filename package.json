@@ -11,6 +11,7 @@
     "express": "latest",
     "html-webpack-plugin": "latest",
     "lodash": "latest",
+    "mdbreact": "^4.1.0",
     "morgan": "^1.9.0",
     "prop-types": "latest",
     "react": "^16.2.0",
@@ -34,7 +35,10 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-react-hmre": "^1.1.1",
+    "chart.js": "^2.7.1",
     "nstall": "^0.2.0",
+    "react-chartjs": "^1.2.0",
+    "react-chartjs-2": "^2.6.4",
     "react-hot-loader": "^3.1.3",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
@@ -43,5 +47,5 @@
     "webpack": "^3.10.0",
     "webpack-dev-middleware": "^2.0.3"
   },
-  "proxy": "http://localhost:5000"
+  "proxy": "http://mongodbrestapi.herokuapp.com/"
 }

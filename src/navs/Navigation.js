@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom';
 import UserProfile from '../actions/userprofile';
 
 export default () => {
-
-
-
     return(
         <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
             <div className='container'>
@@ -27,10 +24,14 @@ export default () => {
 
                     {UserProfile.getName()!=="" &&
                     <form className="form-inline my-2 my-lg-0">
-                    <Link to='/logout' role='button'  className="btn btn-outline-danger my-2 my-sm-0" >Logout</Link>
+                        <Link to='/logout' role='button'  className="btn btn-outline-danger my-2 my-sm-0" >Logout</Link>
                     </form>}
                 </div>
             </div>
         </nav>
-    );
+
+);
+
+
+
 }

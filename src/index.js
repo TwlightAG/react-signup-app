@@ -29,9 +29,9 @@ ReactDOM.render((
             <div className='container'>
                 <Route exact path='/' component={Greet}/>
                 <Route path='/signin' component={SignupPage}/>
-                <Route path='/dashboard' component={Dashboard}/>
                 <Route path='/logout' component={Logout}/>
             </div>
+            <Route path='/dashboard' component={Dashboard}/>
         </div>
     </Provider>
     </BrowserRouter>
