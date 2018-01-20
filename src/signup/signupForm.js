@@ -1,7 +1,7 @@
 import React from 'react';
 import validator from 'validator';
 import Loading from '../loader/loader';
-
+import {Redirect} from 'react-router';
 
 class SignupForm extends React.Component {
 
@@ -34,11 +34,11 @@ class SignupForm extends React.Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        this.setState({isLoading:true});
         const errors = this.validate(this.state.data);
         this.setState({errors});
         if(Object.keys(errors).length === 0){
             this.setState({errors});
+            this.setState({isLoading:true});
             const headers = new Headers();
             headers.append("Content-Type",'application/json');
 
@@ -54,6 +54,7 @@ class SignupForm extends React.Component {
 
             if (response.statusText === 'OK'){
                 this.setState({isLoading:false});
+                this.setState({redirect:true});
                 console.log('submitted successfully');
             }
 
@@ -75,10 +76,15 @@ class SignupForm extends React.Component {
     };
 
     render(){
-        const { data,errors,isLoading } = this.state;
+        const { data,errors,isLoading,redirect } = this.state;
         if(isLoading){
             return(
                 <Loading />
+            );
+        }
+        if(redirect){
+            return(
+                <Redirect to={"/dashboard"}/>
             );
         }
         return(

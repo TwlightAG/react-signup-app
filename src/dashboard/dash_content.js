@@ -9,7 +9,8 @@ class DashCont extends React.Component {
     constructor(){
         super();
         this.state = {
-            chartData:{}
+            chartData:{},
+            items: []
         }
     }
     componentWillMount(){
@@ -48,28 +49,19 @@ class DashCont extends React.Component {
             <div>
                 <h2 className={"card-body"}>Dashboard
                     <hr/></h2>
-                <div  className={"card-body row"}>
+                <div className={"row"}>
                     <div id={"padding-all"} className={"col-7"}>
-                    <div id={"padding-all"} className={"card"}>
-                        <div className={"card card-body rounded"}>
-                            <BarChart chartData={this.state.chartData} />
+
+                        <div id={"padding-all"} className={"chart card"}>
+
+                            <div className={"card card-body rounded"}>
+
+                            </div>
                         </div>
                     </div>
-                    </div>
-                    <div id={"padding-all"} className={"col-5"}>
-                    <div id={"padding-all"} className={"chart card"}>
-                        <div  className={" card card-body rounded"}>
-                            <LineChart chartData={this.state.chartData} />
-                        </div>
-                    </div>
-                    </div>
-                    <div id={"padding-all"} className={"col-7"}>
-                    <div id={"padding-all"} className={"chart card"}>
-                        <div className={"card card-body rounded"}>
-                            <PieChart chartData={this.state.chartData} />
-                        </div>
-                    </div>
-                    </div>
+                    <BarChart chartData={this.state.chartData} />
+                    <LineChart chartData={this.state.chartData} />
+                    <PieChart chartData={this.state.chartData} />
                 </div>
             </div>
         );

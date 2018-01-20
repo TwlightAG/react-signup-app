@@ -10,7 +10,7 @@ class Dashboard extends React.Component {
         return <Redirect push to="/signin"/>;
     }
         return(
-            <div id={"padding"} className={"container "}>
+            <div id={"padding1"} className={"container "}>
             <div className={"row card"}>
                 <div id={"padding-all"} className={"col-12"}>
                     <DashCont />

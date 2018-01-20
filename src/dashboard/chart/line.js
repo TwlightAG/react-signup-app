@@ -15,20 +15,27 @@ class LineChart extends React.Component {
     };
     render(){
         return(
-                    <Line
-                        data={this.state.chartData}
-                        options={{
-                            title:{
-                                display:this.props.displayTitle,
-                                text:'Salary Graph',
-                                fontSize:25
-                            },
-                            legend:{
-                                display:this.props.displayLegend,
-                                position:this.props.legendPosition
-                            }
-                        }}
-                    />
+            <div id={"padding-all"} className={"col-7"}>
+                <div id={"padding-all"} className={"chart card"}>
+                    <div className={"card card-body rounded"}>
+                        <Line
+                            data={this.state.chartData}
+                            options={{
+                                title:{
+                                    display:this.props.displayTitle,
+                                    text:'Salary Graph',
+                                    fontSize:25
+                                },
+                                legend:{
+                                    display:this.props.displayLegend,
+                                    position:this.props.legendPosition
+                                }
+                            }}
+                        />
+                    </div>
+                </div>
+            </div>
+
         );
     }
 }

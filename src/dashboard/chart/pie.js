@@ -15,21 +15,27 @@ class PieChart extends React.Component {
     };
     render(){
         return(
-                    <Pie
-                        data={this.state.chartData}
-                        options={{
-                            title:{
-                                display:this.props.displayTitle,
+            <div id={"padding-all"} className={"col-5"}>
+                <div id={"padding-all"} className={"chart card"}>
+                    <div  className={" card card-body rounded"}>
+                        <Pie
+                    data={this.state.chartData}
+                    options={{
+                        title:{
+                            display:this.props.displayTitle,
                                 text:'Salary Graph',
                                 fontSize:25
-                            },
-                            legend:{
-                                display:this.props.displayLegend,
+                        },
+                        legend:{
+                            display:this.props.displayLegend,
                                 position:this.props.legendPosition
-                            }
-                        }}
+                        }
+                    }}
                     />
-        );
+                    </div>
+                </div>
+            </div>
+    );
     }
 }
 
