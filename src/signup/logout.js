@@ -1,10 +1,10 @@
-import UserProfile from '../actions/userprofile';
+
 import React from  "react";
 import {Redirect} from "react-router";
 
 class Logout extends React.Component {
     render() {
-        UserProfile.setName("");
+        sessionStorage.setItem('user','');
         return <Redirect push to="/signin"/>;
     }
 }

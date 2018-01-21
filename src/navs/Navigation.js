@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import UserProfile from '../actions/userprofile';
 
 export default () => {
     return(
@@ -16,13 +15,16 @@ export default () => {
                         <li className="nav-item active">
                             <Link to={'/'} className="nav-link" href="">Home <span className="sr-only">(current)</span></Link>
                         </li>
+                        <li className="nav-item active">
+                            <Link to={'/dashboard'} className="nav-link" href="">Dashboard <span className="sr-only">(current)</span></Link>
+                        </li>
                     </ul>
-                    {UserProfile.getName()==="" &&
+                    {sessionStorage.getItem('user')==="" &&
                     <form className="form-inline my-2 my-lg-0">
                         <Link to='/signin' role='button'  className="btn btn-outline-success my-2 my-sm-0" >Sign In</Link>
                     </form>}
 
-                    {UserProfile.getName()!=="" &&
+                    {sessionStorage.getItem('user')!=="" &&
                     <form className="form-inline my-2 my-lg-0">
                         <Link to='/logout' role='button'  className="btn btn-outline-danger my-2 my-sm-0" >Logout</Link>
                     </form>}

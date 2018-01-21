@@ -53,6 +53,7 @@ class SignupForm extends React.Component {
             console.log(response.statusText);
 
             if (response.statusText === 'OK'){
+                sessionStorage.setItem('user', this.state.email);
                 this.setState({isLoading:false});
                 this.setState({redirect:true});
                 console.log('submitted successfully');

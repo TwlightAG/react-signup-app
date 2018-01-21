@@ -1,19 +1,23 @@
 import React from 'react';
-import UserProfile from '../actions/userprofile';
 import {Redirect} from "react-router";
 import '../css/main.css';
 import DashCont from "./dash_content";
+import Route from "react-router/es/Route";
+import AddSite from "./add_site";
 
 class Dashboard extends React.Component {
     render(){
-        if (UserProfile.getName() !== "") {
+        if (sessionStorage.getItem('user') !== "") {
         return <Redirect push to="/signin"/>;
     }
         return(
             <div id={"padding1"} className={"container "}>
             <div className={"row card"}>
                 <div id={"padding-all"} className={"col-12"}>
-                    <DashCont />
+                    <h2 className={"card-body"}>Dashboard
+                        <hr/></h2>
+                    <Route exact path={"/dashboard"} component={DashCont}  />
+                    <Route path={"/dashboard/add_site"} component={AddSite}  />
                 </div>
             </div>
             </div>
