@@ -12,9 +12,9 @@ class Dashboard extends React.Component {
     }
         return(
             <div id={"padding1"} className={"container "}>
-            <div className={"row card"}>
+            <div className={"row card border border-top-0 border-bottom-0 border-light bg-light" }>
                 <div id={"padding-all"} className={"col-12"}>
-                    <h2 className={"card-body"}>Dashboard
+                    <h2 className={"card-body "}>Dashboard
                         <hr/></h2>
                     <Route exact path={"/dashboard"} component={DashCont}  />
                     <Route path={"/dashboard/add_site"} component={AddSite}  />
