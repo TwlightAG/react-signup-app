@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a5d50df7-0c26-4ab5-aabd-da97345ff52b" name="Default" comment="ignored &quot;node_modules&quot;">
+    <list default="true" id="a5d50df7-0c26-4ab5-aabd-da97345ff52b" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -148,6 +148,11 @@
               <item name="react-signup-app" type="b2602c69:ProjectViewProjectNode" />
               <item name="react-signup-app" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="react-signup-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="react-signup-app" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -256,7 +261,7 @@
       <workItem from="1516337975740" duration="1816000" />
       <workItem from="1516425004893" duration="5489000" />
       <workItem from="1516456998642" duration="5353000" />
-      <workItem from="1516515774094" duration="11845000" />
+      <workItem from="1516515774094" duration="11930000" />
     </task>
     <task id="LOCAL-00001" summary="Just a small thing">
       <created>1513968576527</created>
@@ -307,11 +312,18 @@
       <option name="project" value="LOCAL" />
       <updated>1516443680628</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Fresh Start">
+      <created>1516533635582</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1516533635582</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="142839000" />
+    <option name="totallyTimeSpent" value="142924000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -368,7 +380,8 @@
     <MESSAGE value="Sends the request to the springboot Rest API" />
     <MESSAGE value="Updated Node Version" />
     <MESSAGE value="ignored &quot;node_modules&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="ignored &quot;node_modules&quot;" />
+    <MESSAGE value="Fresh Start" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fresh Start" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
