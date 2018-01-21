@@ -7,7 +7,7 @@ import AddSite from "./add_site";
 
 class Dashboard extends React.Component {
     render(){
-        if (sessionStorage.getItem('user') !== "") {
+        if (sessionStorage.getItem('user') === "") {
         return <Redirect push to="/signin"/>;
     }
         return(

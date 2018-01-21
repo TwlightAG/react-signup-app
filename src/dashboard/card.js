@@ -22,7 +22,7 @@ class Card extends React.Component {
                 <div className="card-body" align="center">
                     <h5 className="card-title">{cardTitle}</h5>
                     <Link to={linkURL}>
-                        <img id={"padding-all"} height={Imgheight} src={require(`../images/${srcImg}`)}/>
+                        <img id={"padding-all"} height={Imgheight} src={require(`../images/${srcImg}`)} alt={"Something"}/>
                     </Link>
                 </div>
             </div>

@@ -1,14 +1,17 @@
 import React from 'react';
-import validator from 'validator';
-import Loading from '../loader/loader';
+import Loading from '../dashboard/loader/loader';
 import {Redirect} from 'react-router';
 
 class SignupForm extends React.Component {
 
     state = {
         data: {
-            email:"",
+            username:"",
             password:""
+        },
+        fetchJson:{
+            userName:"",
+            passWord:""
         },
         redirect:false,
         errors:{}
@@ -19,18 +22,28 @@ class SignupForm extends React.Component {
             data:{...this.state.data, [e.target.name] : e.target.value}
         });
 
-    // componentDidMount(){
-    //     this.setState({isLoading:true});
-    //     fetch('/api/auth/E05', {
-    //         headers : {
-    //             'Content-Type': 'application/json',
-    //             'Accept': 'application/json'
-    //         }
-    //
-    //     })
-    //         .then((response) => response.json())
-    //         .then((data)=>this.setState({data:data,isLoading:false}));
-    // }
+    async myCall(){
+        this.setState({isLoading:true});
+        const response = await fetch(`/customer/search/findByUserName?username=${this.state.data.username}`, {
+            headers : {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+
+        });
+            const data  = await response.json();
+            this.setState({fetchJson:data,isLoading:false});
+        //console.log(data);
+        console.log(this.state.fetchJson.userName);
+        if(this.state.fetchJson.userName === this.state.data.username && this.state.fetchJson.passWord === this.state.data.password){
+            sessionStorage.setItem('user', this.state.data.username);
+            this.setState({isLoading:false});
+            this.setState({redirect:true});
+            console.log('submitted successfully');
+        }else{
+            console.log("nope");
+        }
+    }
 
     onSubmit = (e) => {
         e.preventDefault();
@@ -38,26 +51,33 @@ class SignupForm extends React.Component {
         this.setState({errors});
         if(Object.keys(errors).length === 0){
             this.setState({errors});
-            this.setState({isLoading:true});
-            const headers = new Headers();
-            headers.append("Content-Type",'application/json');
-
-            const option = {
-                method : 'POST',
-                headers,
-                body: JSON.stringify(this.state.data)
-            };
-
-            const request = new Request('/api/auth',option);
-            const response = fetch(request);
-            console.log(response.statusText);
-
-            if (response.statusText === 'OK'){
-                sessionStorage.setItem('user', this.state.email);
-                this.setState({isLoading:false});
-                this.setState({redirect:true});
-                console.log('submitted successfully');
-            }
+            this.myCall();
+            //this.setState({isLoading:true});
+            // const headers = new Headers();
+            // headers.append("Content-Type",'application/json');
+            //
+            // const option = {
+            //     method : 'GET',
+            //     headers
+            // };
+            //
+            // const request = new Request(`/customer/search/findByUserName?username=${this.state.data.username}`,option);
+            // fetch(request).then(response => response.json())
+            //     .then(data => console.log(data.userName))
+            //     .then((data) => {
+            //         if(data.userName === this.state.username && data.passWord === this.state.password){
+            //             sessionStorage.setItem('user', this.state.username);
+            //             this.setState({isLoading:false});
+            //             this.setState({redirect:true});
+            //             console.log('submitted successfully');
+            //             console.log(this.state.username);
+            //         }
+            //     });
+            // //this.setState({fetchJson: response._embedded});
+            // console.log(this.state.fetchJson);
+            // if (response.statusText === 'OK'){
+            //
+            // }
 
         }
 
@@ -66,12 +86,9 @@ class SignupForm extends React.Component {
     validate = (data) => {
         const errors = {};
 
-        if(!data.password && !data.email){
-            errors.email = "It can't be blank";
+        if(!data.password && !data.username){
+            errors.username = "It can't be blank";
             errors.password = "It can't be blank";
-        }
-        else if(!validator.isEmail(data.email)) {
-            errors.email = "Invalid Email";
         }
         return errors;
     };
@@ -93,11 +110,11 @@ class SignupForm extends React.Component {
 
                 <div className="form-group">
                     <label >Email address</label>
-                    <input type="email" className="form-control" placeholder="Enter email" name="email"
+                    <input type="text" className="form-control" placeholder="Enter email" name="username"
                            onChange={this.onChange}
-                           value ={data.email}
+                           value ={data.username}
                            autoFocus />
-                    {errors.email && <small className="help-block text-danger">{errors.email}</small>}
+                    {errors.username && <small className="help-block text-danger">{errors.username}</small>}
                 </div>
 
                 <div className="form-group">
@@ -105,7 +122,7 @@ class SignupForm extends React.Component {
                     <input type="password" className="form-control"  placeholder="Password" name="password"
                             value ={data.password}
                            onChange={this.onChange}
-                           autoFocus />
+                            />
                     {errors.password && <small className="help-block text-danger">{errors.password}</small>}
 
                 </div>

@@ -25,9 +25,17 @@ export default () => {
                     </form>}
 
                     {sessionStorage.getItem('user')!=="" &&
-                    <form className="form-inline my-2 my-lg-0">
-                        <Link to='/logout' role='button'  className="btn btn-outline-danger my-2 my-sm-0" >Logout</Link>
-                    </form>}
+                        <ul className="navbar-nav mr-auto">
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {sessionStorage.getItem('user')}
+                                </a>
+                                <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <Link to='/logout' className="dropdown-item" href="#">Logout</Link>
+                                </div>
+                            </li>
+                        </ul>
+                    }
                 </div>
             </div>
         </nav>
