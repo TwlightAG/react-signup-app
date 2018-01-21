@@ -27,6 +27,8 @@
     "webpack-hot-middleware": "^2.21.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d ",
     "start": "react-scripts start",
     "start-dev": "nodemon --watch server --exec babel-node -- server.js",
     "build": "react-scripts build",
@@ -43,6 +45,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-react-hmre": "^1.1.1",
     "chart.js": "^2.7.1",
+    "gh-pages": "^1.1.0",
     "nstall": "^0.2.0",
     "react-chartjs": "^1.2.0",
     "react-chartjs-2": "^2.6.4",
