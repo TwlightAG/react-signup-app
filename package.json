@@ -54,10 +54,18 @@
     "react-hot-loader": "^3.1.3",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
+    "prop-types": "latest",
+    "react-dom": "^16.2.0",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.0.17",
+    "react-topbar-progress-indicator": "^2.0.0",
     "redux-devtools-extension": "^2.13.2",
     "redux-thunk": "^2.2.0",
     "webpack": "^3.10.0",
-    "webpack-dev-middleware": "^2.0.3"
+    "webpack-dev-middleware": "^2.0.3",
+    "webpack-hot-middleware": "^2.21.0",
+    "html-webpack-plugin": "latest"
   },
   "proxy": "http://mongodbrestapi.herokuapp.com/"
 }
