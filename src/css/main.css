@@ -1,12 +1,19 @@
 #signup{
     padding-top: 80px;
+    padding-bottom: 3px;
+}#signup-card{
+    padding-top: 150px;
     padding-bottom: 20px;
 }
 .width{
     width: 240px;
 }
+#bg{
+    background: #3498db; /* For browsers that do not support gradients */
+    background: linear-gradient(to bottom right, #3498db, #9b59b6); /* Standard syntax (must be last) */
+}
 #padding1{
-    padding-top: 60px;
+    padding-top: 90px;
     padding-left: 3px;
  }#padding2{
     padding-top: 60px;
@@ -21,4 +28,11 @@
 
 .media{
     border-color: aliceblue;
+}
+#card:hover {
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2), 0 2px 5px 0 rgba(0, 0, 0, 0.10);
+    transition: .3s;
+}
+#card{
+    background-color: beige;
 }

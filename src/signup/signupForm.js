@@ -1,6 +1,8 @@
 import React from 'react';
-import Loading from '../dashboard/loader/loader';
 import {Redirect} from 'react-router';
+import Loader from "../dashboard/loader/loader";
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import {faUserCircle,faLock} from "@fortawesome/fontawesome-free-solid/index.es";
 
 class SignupForm extends React.Component {
 
@@ -23,7 +25,6 @@ class SignupForm extends React.Component {
         });
 
     async myCall(){
-        this.setState({isLoading:true});
         const response = await fetch(`/customer/search/findByUserName?username=${this.state.data.username}`, {
             headers : {
                 'Content-Type': 'application/json',
@@ -31,54 +32,32 @@ class SignupForm extends React.Component {
             }
 
         });
-            const data  = await response.json();
-            this.setState({fetchJson:data,isLoading:false});
-        //console.log(data);
+
+        const data  = await response.json();
+        this.setState({fetchJson:data,isLoading:false});
         console.log(this.state.fetchJson.userName);
+
         if(this.state.fetchJson.userName === this.state.data.username && this.state.fetchJson.passWord === this.state.data.password){
             sessionStorage.setItem('user', this.state.data.username);
             this.setState({isLoading:false});
             this.setState({redirect:true});
-            console.log('submitted successfully');
+            console.log('Set Username: '+this.state.data.username);
+            console.log(sessionStorage.getItem('user'));
         }else{
-            console.log("nope");
+            this.setState({isLoading:false});
+            console.log("Nothing is set !");
+            this.state.errors.username = "Wrong Username or Password";
         }
     }
 
     onSubmit = (e) => {
         e.preventDefault();
+        this.setState({isLoading:true});
         const errors = this.validate(this.state.data);
-        this.setState({errors});
         if(Object.keys(errors).length === 0){
-            this.setState({errors});
             this.myCall();
-            //this.setState({isLoading:true});
-            // const headers = new Headers();
-            // headers.append("Content-Type",'application/json');
-            //
-            // const option = {
-            //     method : 'GET',
-            //     headers
-            // };
-            //
-            // const request = new Request(`/customer/search/findByUserName?username=${this.state.data.username}`,option);
-            // fetch(request).then(response => response.json())
-            //     .then(data => console.log(data.userName))
-            //     .then((data) => {
-            //         if(data.userName === this.state.username && data.passWord === this.state.password){
-            //             sessionStorage.setItem('user', this.state.username);
-            //             this.setState({isLoading:false});
-            //             this.setState({redirect:true});
-            //             console.log('submitted successfully');
-            //             console.log(this.state.username);
-            //         }
-            //     });
-            // //this.setState({fetchJson: response._embedded});
-            // console.log(this.state.fetchJson);
-            // if (response.statusText === 'OK'){
-            //
-            // }
-
+        }else{
+            this.setState({errors});
         }
 
     };
@@ -95,31 +74,32 @@ class SignupForm extends React.Component {
 
     render(){
         const { data,errors,isLoading,redirect } = this.state;
-        if(isLoading){
-            return(
-                <Loading />
-            );
-        }
+
         if(redirect){
             return(
                 <Redirect to={"/dashboard"}/>
             );
         }
         return(
-            <form onSubmit={this.onSubmit}>
-
-                <div className="form-group">
-                    <label >Email address</label>
-                    <input type="text" className="form-control" placeholder="Enter email" name="username"
+            <form onSubmit={this.onSubmit} align="center">
+                {isLoading && <Loader/>}
+                <div className="input-group mb-4 border border-dark">
+                    <div className="input-group-prepend">
+                        <span className="input-group-text bg-dark text-light border  border-dark" id="basic-addon1"><FontAwesomeIcon icon={faUserCircle} /></span>
+                    </div>
+                    <input type="text" className="form-control bg-dark text-light border  border-top-0 border-left-0 border-right-0  rounded-0" placeholder="Enter email" name="username"
                            onChange={this.onChange}
                            value ={data.username}
-                           autoFocus />
+                           autoFocus
+                    />
                     {errors.username && <small className="help-block text-danger">{errors.username}</small>}
                 </div>
 
-                <div className="form-group">
-                    <label >Password</label>
-                    <input type="password" className="form-control"  placeholder="Password" name="password"
+                <div className="input-group mb-4 border border-dark">
+                    <div className="input-group-prepend">
+                        <span className="input-group-text bg-dark text-light border border-dark" id="basic-addon1"><FontAwesomeIcon icon={faLock} /></span>
+                    </div>
+                    <input type="password" className="form-control bg-dark text-light rounded-0 border  border-top-0 border-left-0 border-right-0"  placeholder="Password" name="password"
                             value ={data.password}
                            onChange={this.onChange}
                             />
@@ -127,7 +107,7 @@ class SignupForm extends React.Component {
 
                 </div>
 
-                <button className="btn btn-primary">Login</button>
+                <button className="btn btn-outline-primary pull-right">Login</button>
 
             </form>
         );

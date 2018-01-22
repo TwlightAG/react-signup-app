@@ -10,10 +10,11 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './rootReducer'
 
 import App from './App';
-import Greet from './Greetings';
+import Greet from './signup/Greetings';
 import SignupPage from './signup/signup';
 import Dashboard from './dashboard/dashboard';
 import Logout from "./signup/logout";
+import Footer from "./footer/footer";
 
 const stores = createStore(
     rootReducer,
@@ -32,6 +33,7 @@ ReactDOM.render((
                 <Route path='/logout' component={Logout}/>
             </div>
             <Route path='/dashboard' component={Dashboard}/>
+            <Route path={'/'} component={Footer} />
         </div>
     </Provider>
     </BrowserRouter>

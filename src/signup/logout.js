@@ -4,7 +4,7 @@ import {Redirect} from "react-router";
 
 class Logout extends React.Component {
     render() {
-        sessionStorage.setItem('user','');
+        sessionStorage.setItem('user',"");
         return <Redirect push to="/signin"/>;
     }
 }
