@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import {faBug, faSignOutAlt, faUserCircle} from "@fortawesome/fontawesome-free-solid/index.es";
+import {faBug, faSignOutAlt, faUserCircle} from "@fortawesome/fontawesome-free-solid";
 
 class Navigation extends React.Component{
 

@@ -5,7 +5,7 @@ import {
     faBug,
     faCodeBranch, faEye, faFileAlt, faFileCode, faPlus,
     faThList
-} from "@fortawesome/fontawesome-free-solid/index.es";
+} from "@fortawesome/fontawesome-free-solid";
 class DashCont extends React.Component {
 
 

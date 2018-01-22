@@ -2,7 +2,7 @@ import React from 'react';
 import {Redirect} from 'react-router';
 import Loader from "../dashboard/loader/loader";
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import {faUserCircle,faLock} from "@fortawesome/fontawesome-free-solid/index.es";
+import {faUserCircle,faLock} from "@fortawesome/fontawesome-free-solid";
 
 class SignupForm extends React.Component {
 
