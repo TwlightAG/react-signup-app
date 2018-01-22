@@ -1,11 +1,7 @@
 import React from 'react';
 import '../css/main.css';
 import Card from "./card";
-import {
-    faBug,
-    faCodeBranch, faEye, faFileAlt, faFileCode, faPlus,
-    faThList
-} from "@fortawesome/fontawesome-free-solid";
+import {faBug,faCodeBranch, faEye, faFileAlt, faFileCode, faPlus, faThList} from "@fortawesome/fontawesome-free-solid";
 class DashCont extends React.Component {
 
 
