@@ -1,5 +1,4 @@
 import React from 'react';
-import './loading.css';
 import TopBarProgress from "react-topbar-progress-indicator";
 
 TopBarProgress.config({

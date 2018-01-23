@@ -33,7 +33,7 @@ class Navigation extends React.Component{
                         <div className={"row"}>
                         <ul className="navbar-nav mr-auto ">
                             <li className="nav-item dropdown ">
-                                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><FontAwesomeIcon icon={faUserCircle} /> {sessionStorage.getItem('user')}
+                                <a className="nav-link dropdown-toggle" href={""} id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><FontAwesomeIcon icon={faUserCircle} /> {sessionStorage.getItem('user')}
                                 </a>
                                 <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <Link to='/logout' className="dropdown-item" href="#"><FontAwesomeIcon icon={faSignOutAlt}/> Logout</Link>
