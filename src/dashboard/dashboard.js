@@ -14,7 +14,7 @@ class Dashboard extends React.Component {
             <div id={"padding1"} className={"container "}>
                 <div className={"row card border border-top-0 border-bottom-0 border-light bg-light" }>
                     <div id={"padding-all"} className={"col-12"}>
-                        <h4 className={"card-body display-4"} align="center"> <img src={require("../images/dash.png")} height={75}/> Dashboard
+                        <h4 className={"card-body display-4"} align="center"> <img src={require("../images/dash.png")} height={75} alt={"Dash"}/> Dashboard
                             <hr/></h4>
                         <Route exact path={"/dashboard"} component={DashCont}  />
                         <Route path={"/dashboard/add_site"} component={AddSite}  />
