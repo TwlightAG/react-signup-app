@@ -25,7 +25,7 @@ class SignupForm extends React.Component {
         });
 
     async myCall(){
-        const response = await fetch(`/customer/search/findByUserName?username=${this.state.data.username}`, {
+        const response = await fetch(`http://mongodbrestapi.herokuapp.com/customer/search/findByUserName?username=${this.state.data.username}`, {
             headers : {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
