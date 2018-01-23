@@ -12,6 +12,8 @@ class SignupPage extends React.Component {
         }
         return(
             <div>
+                <br/>
+                <br/>
                 <div className='row justify-content-md-center'>
                     <div id='signup' className='col-6'>
                         <div className="card bg-dark text-light">

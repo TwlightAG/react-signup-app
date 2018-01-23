@@ -3,10 +3,10 @@ import TopBarProgress from "react-topbar-progress-indicator";
 
 TopBarProgress.config({
     barColors: {
-        "0": "#1abc9c",
+        "0": "#2980b9",
         "0.25": "#3498db",
-        "0.5": "#e67e22",
-        "0.75": "#e74c3c",
+        "0.5": "#ecf0f1",
+        "0.75": "#9b59b6",
         "1.0": "#8e44ad",
     },
     shadowBlur: 5,

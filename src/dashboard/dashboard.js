@@ -3,7 +3,6 @@ import {Redirect} from "react-router";
 import '../css/main.css';
 import DashCont from "./dash_content";
 import Route from "react-router/es/Route";
-import AddSite from "./add_site";
 
 class Dashboard extends React.Component {
     render(){
@@ -17,7 +16,6 @@ class Dashboard extends React.Component {
                         <h4 className={"card-body display-4"} align="center"> <img src={require("../images/dash.png")} height={75} alt={"Dash"}/> Dashboard
                             <hr/></h4>
                         <Route exact path={"/dashboard"} component={DashCont}  />
-                        <Route path={"/dashboard/add_site"} component={AddSite}  />
                     </div>
                 </div>
             </div>

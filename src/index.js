@@ -14,7 +14,7 @@ import Greet from './signup/Greetings';
 import SignupPage from './signup/signup';
 import Dashboard from './dashboard/dashboard';
 import Logout from "./signup/logout";
-import Footer from "./footer/footer";
+import AddSite from "./dashboard/add_site";
 
 const stores = createStore(
     rootReducer,
@@ -32,8 +32,8 @@ ReactDOM.render((
                 <Route path='/signin' component={SignupPage}/>
                 <Route path='/logout' component={Logout}/>
             </div>
-            <Route path='/dashboard' component={Dashboard}/>
-            <Route path={'/'} component={Footer} />
+            <Route exact path='/dashboard' component={Dashboard}/>
+            <Route path={"/dashboard/add_site"} component={AddSite}  />
         </div>
     </Provider>
     </BrowserRouter>
