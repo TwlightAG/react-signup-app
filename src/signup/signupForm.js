@@ -25,7 +25,7 @@ class SignupForm extends React.Component {
         });
 
     async myCall(){
-        const response = await fetch(`http://mongodbrestapi.herokuapp.com/customer/search/findByUserName?username=${this.state.data.username}`, {
+        const response = await fetch(`/customer/search/findByUserName?username=${this.state.data.username}`, {
             headers : {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
@@ -35,14 +35,11 @@ class SignupForm extends React.Component {
 
         const data  = await response.json();
         this.setState({fetchJson:data,isLoading:false});
-        console.log(this.state.fetchJson.userName);
 
         if(this.state.fetchJson.userName === this.state.data.username && this.state.fetchJson.passWord === this.state.data.password){
             sessionStorage.setItem('user', this.state.data.username);
             this.setState({isLoading:false});
             this.setState({redirect:true});
-            console.log('Set Username: '+this.state.data.username);
-            console.log(sessionStorage.getItem('user'));
         }else{
             this.setState({isLoading:false});
             console.log("Nothing is set !");
