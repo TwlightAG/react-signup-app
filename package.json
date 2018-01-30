@@ -7,6 +7,9 @@
     "node": "8.9.3"
   },
   "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.2",
+    "@fortawesome/fontawesome-free-solid": "^5.0.4",
+    "@fortawesome/react-fontawesome": "0.0.17",
     "axios": "^0.17.1",
     "babel-loader": "^7.1.2",
     "bcrypt": "^1.0.3",
@@ -19,22 +22,20 @@
     "morgan": "^1.9.0",
     "prop-types": "latest",
     "react": "^16.2.0",
-    "redux": "^3.7.2",
     "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.17",
-    "react-redux": "^5.0.6",
     "react-topbar-progress-indicator": "^2.0.0",
-    "validator": "^9.2.0",
+    "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-thunk": "^2.2.0",
+    "superagent": "^3.8.2",
+    "validator": "^9.2.0",
     "webpack": "^3.10.0",
     "webpack-dev-middleware": "^2.0.3",
-    "webpack-hot-middleware": "^2.21.0",
-    "@fortawesome/fontawesome": "^1.1.2",
-    "@fortawesome/react-fontawesome": "0.0.17",
-    "@fortawesome/fontawesome-free-solid": "^5.0.4"
+    "webpack-hot-middleware": "^2.21.0"
   },
   "scripts": {
     "predeploy": "npm run build",
@@ -75,5 +76,15 @@
     "webpack-dev-middleware": "^2.0.3",
     "webpack-hot-middleware": "^2.21.0",
     "html-webpack-plugin": "latest"
+  },
+  "proxy": {
+    "/admin": {
+      "target": "http://mongodbrestapi.herokuapp.com",
+      "changeOrigin": true
+    },
+    "/personal": {
+      "target": "http://mongodbrestapi.herokuapp.com",
+      "changeOrigin": true
+    }
   }
 }

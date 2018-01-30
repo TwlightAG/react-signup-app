@@ -1,21 +1,44 @@
 import React from 'react';
-import {Redirect} from 'react-router';
+import FontAwesomeIcon from "@fortawesome/react-fontawesome";
+import {faEnvelope, faUserCircle} from "@fortawesome/fontawesome-free-solid/index.es";
 import Loader from "../dashboard/loader/loader";
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import {faUserCircle,faLock} from "@fortawesome/fontawesome-free-solid";
 
-class SignupForm extends React.Component {
+class Profile extends React.Component {
 
     state = {
-        data: {
-            id:"",
-            username:"",
-            password:""
-        },
+        data: "",
         fetchJson:"",
         redirect:false,
         errors:{}
     };
+
+    componentWillMount(){
+
+        // const response = await fetch(`/admin/${sessionStorage.getItem('user')}`, {
+        //     headers : {
+        //         'Content-Type': 'application/json',
+        //         'Accept': 'application/json'
+        //     }
+        //
+        // });
+        // const self = this;
+        // request
+        //     .get(`/admin/${sessionStorage.getItem('user')}`)
+        //     .set('Accept', 'application/json')
+        //     .then(function(res) {
+        //         self.setState({data:res.body});
+        //     }).catch(function (err) {
+        //         console.log(err.message);
+        // });
+        // console.log(this.state.data);
+        // const dataJson  = await response.json();
+        // this.setState({
+        //     data:response
+        // });
+        // console.log(this.state.data);
+        const user = JSON.parse(localStorage.getItem('personal'));
+        this.setState({data:user});
+    }
 
     onChange = e =>
         this.setState({
@@ -23,15 +46,14 @@ class SignupForm extends React.Component {
         });
 
     async myCall(){
-        const response = await fetch(`/admin/${this.state.data.username}`, {
+
+        const response = await fetch(`/admin`, {
+            method:'PUT',
             headers : {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             }
-
-        }).catch( (err) =>{
-            console.log(err.message);
-        });
+        }).catch(err => console.log(err));
         // const response = request
         //     .get(`/customer/search/findByUserName`)
         //     .query({username:this.state.data.username})
@@ -39,17 +61,6 @@ class SignupForm extends React.Component {
 
         const data  = await response.json();
         this.setState({fetchJson:data});
-        localStorage.setItem('personal',JSON.stringify(this.state.fetchJson));
-
-        if(this.state.fetchJson.username === this.state.data.username && this.state.fetchJson.password === this.state.data.password){
-            sessionStorage.setItem('user', this.state.data.username);
-            this.setState({isLoading:false});
-            this.setState({redirect:true});
-        }else{
-            this.setState({isLoading:false});
-            console.log("Nothing is set !");
-            this.state.errors.username = "Wrong Username or Password";
-        }
     }
 
     onSubmit = (e) => {
@@ -66,23 +77,16 @@ class SignupForm extends React.Component {
 
     validate = (data) => {
         const errors = {};
-
-        if(!data.password && !data.username){
+        if(!data.username && !data.email){
             errors.username = "It can't be blank";
-            errors.password = "It can't be blank";
+            errors.email = "It can't be blank";
         }
         return errors;
     };
 
-    render(){
-        const { data,errors,isLoading,redirect } = this.state;
-
-        if(redirect){
-            return(
-                <Redirect to={"/dashboard"}/>
-            );
-        }
-        return(
+    render() {
+        const { data,errors,isLoading } = this.state;
+        return (
             <form onSubmit={this.onSubmit} align="center">
                 {isLoading && <Loader/>}
                 <div className="input-group mb-4 border border-dark">
@@ -99,21 +103,20 @@ class SignupForm extends React.Component {
 
                 <div className="input-group mb-4 border border-dark">
                     <div className="input-group-prepend">
-                        <span className="input-group-text bg-dark text-light border border-dark" id="basic-addon1"><FontAwesomeIcon icon={faLock} /></span>
+                        <span className="input-group-text bg-dark text-light border border-dark" id="basic-addon1"><FontAwesomeIcon icon={faEnvelope} /></span>
                     </div>
-                    <input type="password" className="form-control bg-dark text-light rounded-0 border  border-top-0 border-left-0 border-right-0"  placeholder="Password" name="password"
-                            value ={data.password}
+                    <input type="email" className="form-control bg-dark text-light rounded-0 border  border-top-0 border-left-0 border-right-0"  placeholder="email" name="email"
+                           value ={data.email}
                            onChange={this.onChange}
-                            />
-                    {errors.password && <small className="help-block text-danger">{errors.password}</small>}
+                    />
+                    {errors.email && <small className="help-block text-danger">{errors.email}</small>}
 
                 </div>
-
-                <button className="btn btn-outline-primary pull-right">Login</button>
+                <button className="btn btn-outline-success pull-right">Save</button>
 
             </form>
         );
     }
 }
 
-export default SignupForm;
+export default Profile;
