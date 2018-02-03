@@ -13,7 +13,6 @@ TopBarProgress.config({
 });
 class Loader extends React.Component {
 
-
     render(){
         return(
             <TopBarProgress />

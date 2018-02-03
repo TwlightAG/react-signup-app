@@ -2,7 +2,9 @@ import React from 'react';
 import {Redirect} from 'react-router';
 import Loader from "../dashboard/loader/loader";
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import {faUserCircle,faLock} from "@fortawesome/fontawesome-free-solid";
+import {faUserCircle} from "@fortawesome/fontawesome-free-solid";
+import {faCheck, faExclamationTriangle, faKey, faTicketAlt} from "@fortawesome/fontawesome-free-solid/index.es";
+import AlertNotify from "../dashboard/alert";
 
 class SignupForm extends React.Component {
 
@@ -14,8 +16,14 @@ class SignupForm extends React.Component {
         },
         fetchJson:"",
         redirect:false,
-        errors:{}
+        errors:{
+            title:"",
+            message:"",
+            type:"",
+            icon:""
+        }
     };
+
 
     onChange = e =>
         this.setState({
@@ -37,45 +45,63 @@ class SignupForm extends React.Component {
         //     .query({username:this.state.data.username})
         //     .set('Accept', 'application/json');
 
-        const data  = await response.json();
-        this.setState({fetchJson:data});
-        localStorage.setItem('personal',JSON.stringify(this.state.fetchJson));
+        try {
+            const data = await response.json();
+            this.setState({fetchJson: data});
+            localStorage.setItem('personal', JSON.stringify(this.state.fetchJson));
+        } catch (e) {
+            this.setState({
+                errors:{
+                    title:"Login Failed",
+                    message:"Username or Password Wrong !!",
+                    type:"danger",
+                    icon:faExclamationTriangle
+                }
+            });
+        }
 
         if(this.state.fetchJson.username === this.state.data.username && this.state.fetchJson.password === this.state.data.password){
             sessionStorage.setItem('user', this.state.data.username);
+            sessionStorage.setItem('user-id', this.state.fetchJson.id);
             this.setState({isLoading:false});
+            this.setState({
+                errors:{
+                    title:"Success",
+                    message:"Login Successful !!",
+                    type:"success",
+                    icon:faCheck
+                }
+            });
             this.setState({redirect:true});
         }else{
             this.setState({isLoading:false});
-            console.log("Nothing is set !");
-            this.state.errors.username = "Wrong Username or Password";
+            this.setState({
+                errors:{
+                    title:"Login Failed",
+                    message:"Username or Password Wrong !!",
+                    type:"danger",
+                    icon:faExclamationTriangle
+                }
+            });
         }
     }
 
     onSubmit = (e) => {
         e.preventDefault();
+        this.setState({
+            errors:{
+                title:"",
+                message:"",
+                type:""
+            }
+        });
         this.setState({isLoading:true});
-        const errors = this.validate(this.state.data);
-        if(Object.keys(errors).length === 0){
-            this.myCall();
-        }else{
-            this.setState({errors});
-        }
+        this.myCall();
 
-    };
-
-    validate = (data) => {
-        const errors = {};
-
-        if(!data.password && !data.username){
-            errors.username = "It can't be blank";
-            errors.password = "It can't be blank";
-        }
-        return errors;
     };
 
     render(){
-        const { data,errors,isLoading,redirect } = this.state;
+        const { data,isLoading,errors,redirect } = this.state;
 
         if(redirect){
             return(
@@ -83,35 +109,36 @@ class SignupForm extends React.Component {
             );
         }
         return(
-            <form onSubmit={this.onSubmit} align="center">
-                {isLoading && <Loader/>}
-                <div className="input-group mb-4 border border-dark">
-                    <div className="input-group-prepend">
-                        <span className="input-group-text bg-dark text-light border  border-dark" id="basic-addon1"><FontAwesomeIcon icon={faUserCircle} /></span>
+            <div>
+                {errors.title !== "" && <AlertNotify icon={errors.icon} title={errors.title} type={errors.type} message={errors.message} />}
+                <form onSubmit={this.onSubmit} align="center">
+                    {isLoading && <Loader/>}
+                    <div className="input-group mb-4 border border-dark">
+                        <div className="input-group-prepend">
+                            <span className="input-group-text bg-dark text-light border  border-dark" id="basic-addon1"><FontAwesomeIcon icon={faUserCircle} /></span>
+                        </div>
+                        <input type="text" className="form-control bg-dark text-light border  border-top-0 border-left-0 border-right-0  rounded-0" placeholder="Enter Username" name="username"
+                               onChange={this.onChange}
+                               value ={data.username}
+                               autoFocus required
+                        />
                     </div>
-                    <input type="text" className="form-control bg-dark text-light border  border-top-0 border-left-0 border-right-0  rounded-0" placeholder="Enter email" name="username"
-                           onChange={this.onChange}
-                           value ={data.username}
-                           autoFocus
-                    />
-                    {errors.username && <small className="help-block text-danger">{errors.username}</small>}
-                </div>
 
-                <div className="input-group mb-4 border border-dark">
-                    <div className="input-group-prepend">
-                        <span className="input-group-text bg-dark text-light border border-dark" id="basic-addon1"><FontAwesomeIcon icon={faLock} /></span>
+                    <div className="input-group mb-4 border border-dark">
+                        <div className="input-group-prepend">
+                            <span className="input-group-text bg-dark text-light border border-dark" id="basic-addon1"><FontAwesomeIcon icon={faKey} /></span>
+                        </div>
+                        <input type="password" className="form-control bg-dark text-light rounded-0 border  border-top-0 border-left-0 border-right-0"  placeholder="Password" name="password"
+                                value ={data.password}
+                               onChange={this.onChange}
+                               required
+                                />
+
                     </div>
-                    <input type="password" className="form-control bg-dark text-light rounded-0 border  border-top-0 border-left-0 border-right-0"  placeholder="Password" name="password"
-                            value ={data.password}
-                           onChange={this.onChange}
-                            />
-                    {errors.password && <small className="help-block text-danger">{errors.password}</small>}
 
-                </div>
-
-                <button className="btn btn-outline-primary pull-right">Login</button>
-
-            </form>
+                    <button className="btn btn-outline-primary pull-right">Login</button>
+                </form>
+            </div>
         );
     }
 }

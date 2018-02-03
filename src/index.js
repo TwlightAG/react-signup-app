@@ -10,13 +10,13 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './rootReducer'
 
 import App from './App';
-import Greet from './signup/Greetings';
 import SignupPage from './signup/signup';
 import Dashboard from './dashboard/dashboard';
 import Logout from "./signup/logout";
-import AddSite from "./dashboard/add_site";
 import Settings from "./user/settings";
 import ViewSite from "./dashboard/view_site";
+import Modal from "./dashboard/modal";
+import ChangePassword from "./user/change_pass";
 
 const stores = createStore(
     rootReducer,
@@ -30,14 +30,16 @@ ReactDOM.render((
             <Route component={App}>
             </Route>
             <div className='container'>
-                <Route exact path='/' component={Greet}/>
-                <Route path='/signin' component={SignupPage}/>
+                <Route exact path='/' component={SignupPage}/>
                 <Route path='/logout' component={Logout}/>
             </div>
+            {/*<Route path='/404' component={NotFound404} />*/}
+            {/*<Redirect exact from='*' to='/404' />*/}
             <Route exact path='/dashboard' component={Dashboard}/>
-            <Route path={"/dashboard/add_site"} component={AddSite}  />
-            <Route path={"/profile"} component={Settings}/>
+            <Route exact path={"/profile"} component={Settings}/>
             <Route path={"/dashboard/view_site"} component={ViewSite}/>
+            <Route path={"/dashboard/add-project"} component={Modal}/>
+            <Route path={"/profile/change_pass"} component={ChangePassword}/>
         </div>
     </Provider>
     </BrowserRouter>

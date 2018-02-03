@@ -10,7 +10,7 @@ class DashCont extends React.Component {
             <div id={"padding-all"}>
 
                 <div className={"row justify-content-md-center"}>
-                        <Card cardTitle={"Add Sites"} srcImg={faPlus} linkURL={"/dashboard/add_site"} Imgheight={"3x"}/>
+                        <Card cardTitle={"Add Sites"} srcImg={faPlus} linkURL={"/dashboard/add-project"} Imgheight={"3x"}/>
                         <Card cardTitle={"View Sites"} srcImg={faEye} linkURL={"/dashboard/view_site"} Imgheight={"3x"}/>
                         <Card cardTitle={"Drill Down"} srcImg={faCodeBranch} linkURL={"/dashboard/drill_down"} Imgheight={"3x"}/>
                         <Card cardTitle={"Pages"} srcImg={faFileAlt} linkURL={"/dashboard/page_status"} Imgheight={"3x"}/>

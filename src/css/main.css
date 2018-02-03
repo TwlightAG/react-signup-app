@@ -36,3 +36,12 @@
 #card{
     background-color: beige;
 }
+::-moz-selection { /* Code for Firefox */
+    color: #ecf0f1;
+    background: #2c3e50;
+}
+
+::selection {
+    color: #ecf0f1;
+    background: #2c3e50;
+}

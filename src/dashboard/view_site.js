@@ -1,6 +1,11 @@
 import React from 'react';
+import Crawl from "./crawl";
 
 class ViewSite extends React.Component {
+
+    state = {
+        data:JSON.parse(localStorage.getItem('personal'))
+    };
     render() {
 
         return (
@@ -8,16 +13,11 @@ class ViewSite extends React.Component {
             <div id={"padding1"} className={"row justify-content-md-center"}>
                 <div id={"padding-all"} className={"card col-10 bg-dark text-white"}>
                     <div className={"card-body"}>
-                        <h5 class="card-title">List of Projects</h5><br/>
+                        <h5 className="card-title">List of Projects<hr className={"border-secondary"}/></h5>
                         <ul className="list-unstyled">
-                            <li className="media">
-                                <div className="media-body">
-                                    <h5 className="mt-0 mb-1">List-based media object</h5>
-                                    <a href={""} className="mt-0 mb-1 card-link">List-based media object</a>
-                                    <br/>
-                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                                </div>
-                            </li>
+                            {this.state.data.project.map((crawl)=>{
+                                return <Crawl crawl={crawl} key={crawl.Project} />
+                            })}
                         </ul>
                     </div>
                 </div>

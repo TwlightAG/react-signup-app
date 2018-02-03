@@ -7,7 +7,7 @@ import Route from "react-router/es/Route";
 class Dashboard extends React.Component {
     render(){
         if (sessionStorage.getItem('user') === "") {
-        return (<Redirect push to="/signin" />);
+        return (<Redirect push to="/" />);
     }
         return(
             <div id={"padding1"} className={"container "}>
