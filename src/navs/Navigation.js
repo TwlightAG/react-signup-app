@@ -26,7 +26,6 @@ class Navigation extends React.Component{
                                     <Link to={'/dashboard'} className="nav-link" href="">Dashboard <span className="sr-only">(current)</span></Link>
                                 </li>
                                 }
-
                             </ul>
 
                             {(sessionStorage.getItem('user')!=="" ) &&

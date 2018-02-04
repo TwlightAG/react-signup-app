@@ -52,7 +52,7 @@ class Modal extends React.Component {
 
         if(redirect){
             return(
-                <Redirect to={"/view_site"}/>
+                <Redirect to={"/dashboard/view_site"}/>
             );
         }
 
